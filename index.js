@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { Client, GatewayIntentBits, Partials, Collection, REST, Routes } from "discord.js";
-import { readdirSync } from "fs";
+import { readdirSync, existsSync } from "fs";
 import { fileURLToPath, pathToFileURL } from "url";
 import { dirname, join } from "path";
 
@@ -33,7 +33,10 @@ for (const file of commandFiles) {
 
 // ─── Load events ─────────────────────────────────────────────────────────────
 
-const eventFiles = readdirSync(join(__dirname, "events")).filter((f) => f.endsWith(".js"));
+const eventsPath = join(__dirname, "events");
+const eventFiles = existsSync(eventsPath)
+  ? readdirSync(eventsPath).filter((f) => f.endsWith(".js"))
+  : [];
 
 for (const file of eventFiles) {
   const { default: event } = await import(pathToFileURL(join(__dirname, "events", file)).href);
