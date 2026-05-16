@@ -6,7 +6,7 @@ export default {
     const guild = member.guild;
 
     // ── Auto role ──────────────────────────────────────────────────────────
-    const autoRoleId = const autoRoleId = "1340455050853613649";;
+    const autoRoleId = "1340455050853613649";
     if (autoRoleId) {
       const role = guild.roles.cache.get(autoRoleId);
       if (role) {
