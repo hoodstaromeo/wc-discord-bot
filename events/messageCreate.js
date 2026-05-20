@@ -17,8 +17,9 @@ export default {
 
     if (!hasInvite) return;
 
-    if (message.member.roles.cache.some(role => role.name === "LASD")) return;
+    const ALLOWED_ROLE_ID = "1341415589326884914";
 
+if (message.member.roles.cache.has(ALLOWED_ROLE_ID)) return;
     await message.delete().catch(() => null);
 
     await message.author
