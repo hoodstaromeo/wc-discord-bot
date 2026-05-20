@@ -1,7 +1,10 @@
 import { Events, EmbedBuilder } from "discord.js";
 
-const INVITE_PATTERNS = ["discord.gg/", "discord.com/invite/", "discordapp.com/invite/"];
+const hasInvite = INVITE_PATTERNS.some((p) => content.includes(p));
 
+if (!hasInvite) return;
+
+if (message.member.roles.cache.some(role => role.name === "LASD")) return;
 export default {
   name: Events.MessageCreate,
   async execute(message) {
